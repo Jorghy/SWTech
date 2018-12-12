@@ -2,197 +2,199 @@ package teljesenmindegy;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 
 public class Controller implements Initializable {
     
-    DB db = new DB();
     @FXML
-    private Label label_name;
+    TableView table;
     @FXML
-    private Label label_vonalkod;
+    TextField input_vonalkod;
     @FXML
-    private Label label_egysegar;
+    TextField input_nev;
     @FXML
-    private Label label_mennyiseg;
+    TextField input_egysegar;
     @FXML
-    private Label label_megjegyzes;
+    TextField input_mennyiseg;
     @FXML
-    private Pane basePane;
+    TextField input_megjegyzes;
     @FXML
-    private Pane LoginPane;
+    Button addNewProduct;
     @FXML
-    private Pane adminPane;
+    StackPane menuPane;
     @FXML
-    private Pane termekPane;
+    Pane basePane;
     @FXML
-    private TextField delUser_id;
+    Pane adminPane;
     @FXML
-    private TextField delTermek_id;
+    Pane loginPane;
     @FXML
-    private TextField addTermek_name;
+    TextField login_user;
     @FXML
-    private TextField addTermek_vonalkod;
+    TextField login_pass;
     @FXML
-    private TextField addTermek_egysegar;
-    @FXML
-    private TextField addTermek_mennyiseg;
-    @FXML
-    private TextField addTermek_megjegyzes;
+    Button login_bejelentkezes;
     
+    private final ObservableList<Termek> products = FXCollections.observableArrayList(
+            new Termek("Telefon","12345","50000","20","Sony"),
+            new Termek("Melegszendvics sütő","12346","5000","50","SilverCrest"),
+            new Termek("IMac","12347","500000","5","IMac")
+    );
     
-    
-    @FXML
-    private void bejelentkezes(ActionEvent event) {
-        basePane.setDisable(true);
-        basePane.setOpacity(0);
-        LoginPane.setVisible(true);
-        LoginPane.setDisable(false);
-        LoginPane.setOpacity(1);
-    }
-    @FXML
-    private void kereses(ActionEvent event) {
-        
-    }
-    @FXML
-    private void termek(ActionEvent event) {
-        basePane.setDisable(true);
-        basePane.setOpacity(0);
-        termekPane.setVisible(true);
-        termekPane.setDisable(false);
-        termekPane.setOpacity(1);
-    }
-    @FXML
-    private void cancelTermek(ActionEvent event) {
-        termekPane.setDisable(true);
-        termekPane.setOpacity(0);
-        basePane.setVisible(true);
-        basePane.setDisable(false);
-        basePane.setOpacity(1);
-        getAllTermek();
-    }
-    @FXML
-    private void cancelLogin(ActionEvent event) {
-        LoginPane.setDisable(true);
-        LoginPane.setOpacity(0);
-        basePane.setVisible(true);
-        basePane.setOpacity(1);
-        basePane.setDisable(false);
-        getAllTermek();
-    }
-    @FXML
-    private void Login(ActionEvent event) {
-        LoginPane.setDisable(true);
-        LoginPane.setOpacity(0);
-        adminPane.setVisible(true);
-        adminPane.setOpacity(1);
-        adminPane.setDisable(false);
-    }
-    @FXML
-    private void cancelAdmin(ActionEvent event) {
-        adminPane.setDisable(true);
-        adminPane.setOpacity(0);
-        basePane.setVisible(true);
-        basePane.setOpacity(1);
-        basePane.setDisable(false);
-        getAllTermek();
-    }
-    @FXML
-    private void delUser(ActionEvent event) {
-        if(!(delUser_id.getText().isEmpty())){
-            String szig = delUser_id.getText();
-            db.delUser(szig);
-            System.out.println("Sikeres törlés!");
-        } else{
-            System.out.println("Sikertelen törlés!");
-        }
-        
-    }
-    @FXML
-    private void addUser(ActionEvent event) {
-        
-        db.addUser("", "", "", "", "", "");
-        System.out.println("Sikeres hozzáadás!");
-    }
-    @FXML
-    private void modUser(ActionEvent event) {
-        
-        db.addUser("", "", "", "", "", "");
-        System.out.println("Sikeres hozzáadás!");
-    }
-    @FXML
-    private void modTermek(ActionEvent event) {
-        
-        db.addUser("", "", "", "", "", "");
-        System.out.println("Sikeres hozzáadás!");
-    }
-    @FXML
-    private void addTermek(ActionEvent event) {
-        if(!(addTermek_name.getText().isEmpty()) && !(addTermek_vonalkod.getText().isEmpty()) && !(addTermek_egysegar.getText().isEmpty()) && !(addTermek_mennyiseg.getText().isEmpty()) && !(addTermek_megjegyzes.getText().isEmpty())){
-            String nev = addTermek_name.getText();
-            String vonalkod = addTermek_vonalkod.getText();
-            int egysegar = Integer.parseInt(addTermek_egysegar.getText());
-            int mennyiseg = Integer.parseInt(addTermek_mennyiseg.getText());
-            String megjegyzes = addTermek_megjegyzes.getText();
-            if(!(db.searchTermek(vonalkod))){
-                db.addTermek(nev, vonalkod, egysegar, mennyiseg, megjegyzes);
-                System.out.println("Sikeres hozzáadás!");
-            }else{
-                System.out.println("Ez a vonalkód már használatban van!");
+    public void setTableData(){
+        TableColumn nevCol = new TableColumn("Név");
+        nevCol.setMinWidth(250);
+        nevCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        nevCol.setCellValueFactory(new PropertyValueFactory<Termek, String>("nev"));
+        nevCol.setOnEditCommit(
+            new EventHandler<TableColumn.CellEditEvent<Termek, String>>() {
+                @Override
+                public void handle(TableColumn.CellEditEvent<Termek, String> t){
+                    ((Termek) t.getTableView().getItems().get(
+                        t.getTablePosition().getRow())
+                    ).setNev(t.getNewValue());
+                }
             }
-        } else {
-            System.out.println("Sikertelen hozzáadás!");
-        }
+        );
         
+        TableColumn vonalkodCol = new TableColumn("Vonalkód");
+        vonalkodCol.setMinWidth(100);
+        vonalkodCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        vonalkodCol.setCellValueFactory(new PropertyValueFactory<Termek, String>("vonalkod"));
+        vonalkodCol.setOnEditCommit(
+            new EventHandler<TableColumn.CellEditEvent<Termek, String>>() {
+                @Override
+                public void handle(TableColumn.CellEditEvent<Termek, String> t){
+                    ((Termek) t.getTableView().getItems().get(
+                        t.getTablePosition().getRow())
+                    ).setVonalkod(t.getNewValue());
+                }
+            }
+        );
+        
+        TableColumn egysegarCol = new TableColumn("Egység Ár");
+        egysegarCol.setMinWidth(100);
+        egysegarCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        egysegarCol.setCellValueFactory(new PropertyValueFactory<Termek, String>("egysegar"));
+        egysegarCol.setOnEditCommit(
+            new EventHandler<TableColumn.CellEditEvent<Termek, String>>() {
+                @Override
+                public void handle(TableColumn.CellEditEvent<Termek, String> t){
+                    ((Termek) t.getTableView().getItems().get(
+                        t.getTablePosition().getRow())
+                    ).setEgysegar(t.getNewValue());
+                }
+            }
+        );
+        
+        TableColumn mennyisegCol = new TableColumn("Mennyiség");
+        mennyisegCol.setMinWidth(70);
+        mennyisegCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        mennyisegCol.setCellValueFactory(new PropertyValueFactory<Termek, String>("mennyiseg"));
+        mennyisegCol.setOnEditCommit(
+            new EventHandler<TableColumn.CellEditEvent<Termek, String>>() {
+                @Override
+                public void handle(TableColumn.CellEditEvent<Termek, String> t){
+                    ((Termek) t.getTableView().getItems().get(
+                        t.getTablePosition().getRow())
+                    ).setMennyiseg(t.getNewValue());
+                }
+            }
+        );
+        
+        TableColumn megjegyzesCol = new TableColumn("Megjegyzes");
+        megjegyzesCol.setMinWidth(200);
+        megjegyzesCol.setCellFactory(TextFieldTableCell.forTableColumn());
+        megjegyzesCol.setCellValueFactory(new PropertyValueFactory<Termek, String>("megjegyzes"));
+        megjegyzesCol.setOnEditCommit(
+            new EventHandler<TableColumn.CellEditEvent<Termek, String>>() {
+                @Override
+                public void handle(TableColumn.CellEditEvent<Termek, String> t){
+                    ((Termek) t.getTableView().getItems().get(
+                        t.getTablePosition().getRow())
+                    ).setMegjegyzes(t.getNewValue());
+                }
+            }
+        );
+        
+        table.getColumns().addAll(nevCol, vonalkodCol, egysegarCol, mennyisegCol, megjegyzesCol);
+        table.setItems(products);
     }
+    
+    public void setMenuData() {
+        TreeItem<String> treeItemRoot1 = new TreeItem<>("Menü");
+        TreeView<String> treeView = new TreeView(treeItemRoot1);
+        treeView.setShowRoot(false);
+        
+        TreeItem<String> nodeItemA = new TreeItem<>("Bejelentkezés");
+        TreeItem<String> nodeItemB = new TreeItem<>("Kilépés");
+        treeItemRoot1.getChildren().addAll(nodeItemA, nodeItemB);
+        menuPane.getChildren().add(treeView);
+        
+        treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener() {
+            public void changed(ObservableValue observable, Object oldValue, Object newValue) {
+                TreeItem<String> selectedItem = (TreeItem<String>) newValue;
+                String selectedMenu;
+                selectedMenu = selectedItem.getValue();
+                if(null != selectedMenu){
+                    switch (selectedMenu) {
+                        case "Kilépés": System.exit(0); break;
+                        case "Bejelentkezés":
+                            loginPane.setVisible(true);
+                            basePane.setVisible(false);
+                    }
+                }
+            }
+        });
+    }
+    
+    public void login(){
+        loginPane.setVisible(false);
+        adminPane.setVisible(true);
+    }
+    
+    public void cancelLogin(){
+        loginPane.setVisible(false);
+        basePane.setVisible(true);
+    }
+    
     @FXML
-    private void delTermek(ActionEvent event) {
-        if(!(delTermek_id.getText().isEmpty())){
-            String vkod = delTermek_id.getText();
-            db.delTermek(vkod);
-            System.out.println("Sikeres törlés!");
+    private void addProduct(ActionEvent event){
+        if( !(input_nev.getText().isEmpty()) &&  !(input_vonalkod.getText().isEmpty()) && !(input_egysegar.getText().isEmpty()) && !(input_mennyiseg.getText().isEmpty()) && !(input_megjegyzes.getText().isEmpty())) {
+            products.add(new Termek(input_nev.getText(),input_vonalkod.getText(), input_egysegar.getText(), input_mennyiseg.getText(), input_megjegyzes.getText()));
+            input_nev.clear();
+            input_vonalkod.clear();
+            input_egysegar.clear();
+            input_mennyiseg.clear();
+            input_megjegyzes.clear();
         }else {
-            System.out.println("Sikertelen törlés!");
+            System.out.println("Minden adatot meg kell adni!");
         }
-    }
-    @FXML
-    private void bezar(ActionEvent event) {
-        Platform.exit();
-    }
-    @FXML
-    private void getAllTermek() {
-        String str_name = "";
-        String str_vonalkod = "";
-        String str_egysegar = "";
-        String str_mennyiseg = "";
-        String str_megjegyzes = "";
-        for(Termek t : db.getAllTermek()){
-            str_name += (t.getNev() + " \n");
-            str_vonalkod += (t.getVonalkod() + "\n");
-            str_egysegar += (t.getEgysegar() + "\n");
-            str_mennyiseg += (t.getMennyiseg() + "\n");
-            str_megjegyzes += (t.getMegjegyzes() + "\n");
-        }
-        label_name.setText(str_name);
-        label_vonalkod.setText(str_vonalkod);
-        label_egysegar.setText(str_egysegar);
-        label_mennyiseg.setText(str_mennyiseg);
-        label_megjegyzes.setText(str_megjegyzes);
         
     }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        System.out.println(db.searchTermek("62347"));
-        getAllTermek();
-        System.out.println("Elindult a program!");
-    }    
+        setTableData();
+        setMenuData();
+        
+    }
     
 }

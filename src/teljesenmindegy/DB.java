@@ -124,27 +124,7 @@ public class DB {
         }
     }
     
-    public ArrayList<Termek> getAllTermek(){
-        String sql = "select * from termek";
-        ArrayList<Termek> termekek = null;
-        try{
-            ResultSet rs = createStatement.executeQuery(sql);
-            termekek = new ArrayList<>();
-            while(rs.next()){
-                String nev = rs.getString("name");
-                String vonalkod = rs.getString("vonalkod");
-                int egysegar = rs.getInt("egysegar");
-                int mennyiseg = rs.getInt("mennyiseg");
-                String megjegyzes = rs.getString("megjegyzes");
-                Termek t = new Termek(nev,vonalkod,egysegar,mennyiseg,megjegyzes);
-                termekek.add(t);
-            }
-        }catch(SQLException ex){
-            System.out.println("Nem sikerült lekérdezni!");
-            System.out.println(ex);
-        }
-        return termekek;
-    }
+    
     
     public boolean searchUser(String szig){
         try{
@@ -157,31 +137,6 @@ public class DB {
             }
         } catch(SQLException ex){
             System.out.println("Nem sikerült hozzáadni!");
-            System.out.println(ex);
-        }
-        return false;
-    }
-    
-    public boolean searchTermek(String vonalkod){
-        String sql = "select * from termek where vonalkod =" + "'vonalkod'";
-        ArrayList<Termek> termekek = null;
-        try{
-            ResultSet rs = createStatement.executeQuery(sql);
-            termekek = new ArrayList<>();
-            while(rs.next()){
-                String nev = rs.getString("name");
-                vonalkod = rs.getString("vonalkod");
-                int egysegar = rs.getInt("egysegar");
-                int mennyiseg = rs.getInt("mennyiseg");
-                String megjegyzes = rs.getString("megjegyzes");
-                Termek t = new Termek(nev,vonalkod,egysegar,mennyiseg,megjegyzes);
-                termekek.add(t);
-            }
-            if(termekek.isEmpty()){
-                return true;
-            }
-        }catch(SQLException ex){
-            System.out.println("Nem sikerült lekérdezni!");
             System.out.println(ex);
         }
         return false;

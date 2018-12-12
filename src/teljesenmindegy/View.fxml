@@ -8,289 +8,101 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="623.0" prefWidth="991.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="teljesenmindegy.Controller">
-    <children>
-      <Pane id="basePane" fx:id="basePane" prefHeight="623.0" prefWidth="991.0">
-         <children>
-            <Text layoutX="362.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Leltár program" textAlignment="CENTER" wrappingWidth="253.13671875">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Text>
-            <TextField id="kereses" fx:id="kereses" layoutX="146.0" layoutY="78.0" onAction="#kereses" prefHeight="31.0" prefWidth="829.0" promptText="Keresés...">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
-            <Button id="bejelentkezes" fx:id="bejelentkezes" contentDisplay="CENTER" layoutX="30.0" layoutY="63.0" onAction="#bejelentkezes" prefHeight="46.0" prefWidth="88.0" text="Bejelentkezés" textAlignment="CENTER" />
-            <Button id="termek" fx:id="termek" contentDisplay="CENTER" layoutX="30.0" layoutY="138.0" onAction="#termek" prefHeight="46.0" prefWidth="88.0" text="Termékek" textAlignment="CENTER" wrapText="true" />
-            <Button id="bezar" fx:id="bezar" contentDisplay="CENTER" layoutX="30.0" layoutY="551.0" onAction="#bezar" prefHeight="46.0" prefWidth="88.0" text="Bezár" textAlignment="CENTER" wrapText="true" />
-            <HBox layoutX="146.0" layoutY="145.0" prefHeight="33.0" prefWidth="829.0">
+<AnchorPane id="AnchorPane" prefHeight="820.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="teljesenmindegy.Controller">
+   <children>
+      <Label layoutX="352.0" layoutY="14.0" text="IT monitoring">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <SplitPane dividerPositions="0.18930957683741648" layoutY="72.0" prefHeight="750.0" prefWidth="900.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="726.0" prefWidth="179.0">
                <children>
-                  <Text layoutX="146.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Név">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="392.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vonalkód">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="180.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Text layoutX="550.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Egység Ár">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="40.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Text layoutX="681.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mennyiség">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="50.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Text layoutX="951.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Megjegyzés">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="130.0" />
-                     </HBox.margin>
-                  </Text>
+                  <StackPane id="menuPane" fx:id="menuPane" layoutX="-16.0" layoutY="50.0" prefHeight="726.0" prefWidth="167.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                </children>
-            </HBox>
-            <HBox layoutX="145.0" layoutY="182.0" prefHeight="406.0" prefWidth="829.0">
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
-                  <Label id="label_name" fx:id="label_name" alignment="TOP_LEFT" layoutX="145.0" layoutY="148.0" minHeight="16" minWidth="65.0" prefHeight="440.0" prefWidth="223.0" wrapText="true">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label id="label_vonalkod" fx:id="label_vonalkod" alignment="TOP_CENTER" layoutX="352.0" layoutY="148.0" minHeight="16" minWidth="65.0" prefHeight="440.0" prefWidth="100.0" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label id="label_egysegar" fx:id="label_egysegar" alignment="TOP_CENTER" layoutX="535.0" layoutY="148.0" minHeight="16" minWidth="65.0" prefHeight="440.0" prefWidth="124.0" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label id="label_mennyiseg" fx:id="label_mennyiseg" alignment="TOP_CENTER" layoutX="675.0" layoutY="148.0" minHeight="16" minWidth="65.0" prefHeight="440.0" prefWidth="167.0" textAlignment="CENTER" wrapText="true">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label id="label_megjegyzes" fx:id="label_megjegyzes" alignment="TOP_RIGHT" layoutX="791.0" layoutY="148.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="16" minWidth="65.0" prefHeight="440.0" prefWidth="212.0" textAlignment="RIGHT" wrapText="true">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
+                  <Pane id="basePane" fx:id="basePane" prefHeight="748.0" prefWidth="725.0">
+                     <children>
+                        <TableView id="table" fx:id="table" editable="true" prefHeight="559.0" prefWidth="735.0">
+                          <placeholder>
+                            <Label text="Nincs adat." />
+                          </placeholder>
+                          <columns>
+                          </columns>
+                        </TableView>
+                        <VBox layoutX="224.0" layoutY="577.0" prefHeight="157.0" prefWidth="238.0" spacing="8.0">
+                           <children>
+                              <TextField id="input_vonalkod" fx:id="input_vonalkod" layoutX="162.0" layoutY="564.0" promptText="12345" />
+                              <TextField id="input_nev" fx:id="input_nev" layoutX="162.0" layoutY="597.0" promptText="Telefon" />
+                              <TextField id="input_egysegar" fx:id="input_egysegar" layoutX="162.0" layoutY="620.0" promptText="15000" />
+                              <TextField id="input_mennyiseg" fx:id="input_mennyiseg" layoutX="162.0" layoutY="653.0" promptText="20" />
+                              <TextField id="input_megjegyzes" fx:id="input_megjegyzes" layoutX="162.0" layoutY="687.0" promptText="Sony" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="CENTER_RIGHT" layoutX="118.0" layoutY="577.0" spacing="5.0">
+                           <children>
+                              <Label layoutX="134.0" layoutY="577.0" text="Vonalkód">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="134.0" layoutY="610.0" text="Név">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="134.0" layoutY="642.0" text="Egységár">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="122.0" layoutY="669.0" text="Mennyiség">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="118.0" layoutY="707.0" text="Megjegyzés">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                        <Button id="addNewProduct" fx:id="addNewProduct" layoutX="537.0" onAction="#addProduct" layoutY="632.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="95.0" text="Új termék hozzáadása" textAlignment="CENTER" wrapText="true" />
+                     </children>
+                  </Pane>
+                  <Pane fx:id="adminPane" prefHeight="726.0" prefWidth="725.0" visible="false" />
+                  <Pane fx:id="loginPane" prefHeight="726.0" prefWidth="725.0" visible="false">
+                     <children>
+                        <TextField id="login_user" fx:id="login_user" layoutX="347.0" layoutY="124.0" prefHeight="33.0" prefWidth="238.0" promptText="Felhasználónév" />
+                        <TextField id="login_pass" fx:id="login_pass" layoutX="347.0" layoutY="184.0" prefHeight="33.0" prefWidth="238.0" promptText="Jelszó" />
+                        <Label layoutX="109.0" layoutY="123.0" text="Felhasználónév:">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="217.0" layoutY="183.0" text="Jelszó:">
+                           <font>
+                              <Font name="System Bold" size="25.0" />
+                           </font>
+                        </Label>
+                        <Button id="login_bejelentkezes" fx:id="login_bejelentkezes" layoutX="255.0" layoutY="341.0" mnemonicParsing="false" onAction="#login" prefHeight="45.0" prefWidth="158.0" text="Bejelentkezés">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Button id="login_cancel" fx:id="login_cancel" layoutX="290.0" layoutY="424.0" mnemonicParsing="false" onAction="#cancelLogin" text="Mégse">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children></Pane>
                </children>
-            </HBox>
-         </children>
-      </Pane>
-      <Pane id="LoginPane" fx:id="LoginPane" prefHeight="623.0" prefWidth="991.0" visible="false">
-         <children>
-            <Text layoutX="334.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bejelentkezés" textAlignment="CENTER" wrappingWidth="322.13671875">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Text>
-            <Text id="password" fx:id="passwordtext" layoutX="298.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jelszó:" textAlignment="RIGHT" wrappingWidth="72.13671875">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <Text id="usernametext" fx:id="usernametext" layoutX="156.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Felhasználó név:" textAlignment="RIGHT" wrappingWidth="213.13671875">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <TextField id="username" fx:id="username" layoutX="447.0" layoutY="139.0" prefHeight="40.0" prefWidth="331.0" promptText="Felhasználónév">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
-            <TextField id="password" fx:id="password" layoutX="447.0" layoutY="206.0" prefHeight="40.0" prefWidth="331.0" promptText="Jelszó">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </TextField>
-            <Button id="cancel" fx:id="cancel" layoutX="447.0" layoutY="463.0" mnemonicParsing="false" onAction="#cancelLogin" prefHeight="55.0" prefWidth="98.0" text="Mégse" />
-            <Button id="login" fx:id="login" layoutX="400.0" layoutY="369.0" mnemonicParsing="false" onAction="#Login" prefHeight="55.0" prefWidth="192.0" text="Bejelentkezés" />
-         </children>
-      </Pane>
-      <Pane id="adminPane" fx:id="adminPane" prefHeight="623.0" prefWidth="991.0" visible="false">
-         <children>
-            <Text layoutX="422.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Admin funkciók">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Text>
-            <Text layoutX="19.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Új dolgozó felvétele">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <Text layoutX="19.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dolgozó törlése">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <TextField id="delUser_id" fx:id="delUser_id" layoutX="354.0" layoutY="438.0" prefHeight="25.0" prefWidth="192.0" />
-            <Text layoutX="28.0" layoutY="459.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add meg a dolgozó azonosítóját:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Button id="cancel_Admin" fx:id="cancel_Admin" layoutX="35.0" layoutY="562.0" mnemonicParsing="false" onAction="#cancelAdmin" prefHeight="31.0" prefWidth="88.0" text="Mégse" />
-            <Button id="delUser_button" fx:id="delUser_button" layoutX="406.0" layoutY="484.0" mnemonicParsing="false" onAction="#delUser" prefHeight="31.0" prefWidth="88.0" text="Törlés" />
-            <VBox layoutX="208.0" layoutY="160.0" prefHeight="203.0" prefWidth="192.0" spacing="10.0">
-               <children>
-                  <TextField id="addUser_name" fx:id="addUser_name" layoutX="208.0" layoutY="160.0" prefHeight="23.0" prefWidth="192.0" />
-                  <TextField id="addUser_username" fx:id="addUser_username" layoutX="208.0" layoutY="195.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addUser_password" fx:id="addUser_password" layoutX="208.0" layoutY="227.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addUser_id" fx:id="addUser_id" layoutX="208.0" layoutY="266.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addUser_address" fx:id="addUser_address" layoutX="208.0" layoutY="299.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addUser_rank" fx:id="addUser_rank" layoutX="208.0" layoutY="331.0" prefHeight="25.0" prefWidth="192.0" />
-               </children>
-            </VBox>
-            <VBox layoutX="19.0" layoutY="159.41796875" spacing="8.0">
-               <children>
-                  <Text layoutX="19.0" layoutY="181.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Név:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="19.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Felhasználónév:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="19.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jelszó:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="19.0" layoutY="285.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Szig szám:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="19.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cím:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="19.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rang:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-               </children>
-            </VBox>
-            <Button id="addUser" fx:id="addUser" layoutX="429.0" layoutY="245.0" mnemonicParsing="false" onAction="#addUser" prefHeight="31.0" prefWidth="88.0" text="Hozzáad" />
-            <VBox layoutX="601.0" layoutY="160.0" prefHeight="203.0" prefWidth="192.0" spacing="10.0">
-               <children>
-                  <TextField id="addUser_name" fx:id="addUser_name1" layoutX="208.0" layoutY="160.0" prefHeight="23.0" prefWidth="192.0" />
-                  <TextField id="addUser_username" fx:id="addUser_username1" layoutX="208.0" layoutY="195.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addUser_password" fx:id="addUser_password1" layoutX="208.0" layoutY="227.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addUser_id" fx:id="addUser_id1" layoutX="208.0" layoutY="266.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addUser_address" fx:id="addUser_address1" layoutX="208.0" layoutY="299.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addUser_rank" fx:id="addUser_rank1" layoutX="208.0" layoutY="331.0" prefHeight="25.0" prefWidth="192.0" />
-               </children>
-            </VBox>
-            <Button id="addUser" fx:id="modUser" layoutX="827.0" layoutY="245.0" mnemonicParsing="false" onAction="#modUser" prefHeight="31.0" prefWidth="88.0" text="Módosítás" />
-         </children>
-      </Pane>
-      <Pane id="termekPane" fx:id="termekPane" prefHeight="623.0" prefWidth="991.0" visible="false">
-         <children>
-            <Text layoutX="440.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Termékek">
-               <font>
-                  <Font size="30.0" />
-               </font>
-            </Text>
-            <Button id="cancelTermek" fx:id="cancelTermek" layoutX="36.0" layoutY="561.0" mnemonicParsing="false" onAction="#cancelTermek" prefHeight="31.0" prefWidth="88.0" text="Bezár" />
-            <Text layoutX="36.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Új termék hozzáadása" textAlignment="CENTER">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <VBox layoutX="47.0" layoutY="125.41796875" spacing="8.0">
-               <children>
-                  <Text layoutX="53.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Név:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="52.0" layoutY="177.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vonalkód:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="54.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Egységár:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="52.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mennyiség:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-                  <Text layoutX="47.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Megjegyzés:">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Text>
-               </children>
-            </VBox>
-            <Text layoutX="33.0" layoutY="370.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Termék törlése" textAlignment="CENTER">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <Text layoutX="41.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add meg a termék vonalkódját:">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <VBox layoutX="203.0" layoutY="128.0" spacing="10.0">
-               <children>
-                  <TextField id="addTermek_name" fx:id="addTermek_name" layoutX="204.0" layoutY="128.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addTermek_vonalkod" fx:id="addTermek_vonalkod" layoutX="204.0" layoutY="158.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addTermek_egysegar" fx:id="addTermek_egysegar" layoutX="203.0" layoutY="188.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addTermek_mennyiseg" fx:id="addTermek_mennyiseg" layoutX="203.0" layoutY="218.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="addTermek_megjegyzes" fx:id="addTermek_megjegyzes" layoutX="204.0" layoutY="248.0" prefHeight="25.0" prefWidth="192.0" />
-               </children>
-            </VBox>
-            <TextField id="delTermek_id" fx:id="delTermek_id" layoutX="353.0" layoutY="411.0" prefHeight="25.0" prefWidth="192.0" />
-            <Button id="addTermek" fx:id="addTermek" layoutX="416.0" layoutY="195.0" mnemonicParsing="false" onAction="#addTermek" prefHeight="31.0" prefWidth="88.0" text="Hozzáad" />
-            <Button id="delTermek" fx:id="delTermek" layoutX="406.0" layoutY="481.0" mnemonicParsing="false" onAction="#delTermek" prefHeight="31.0" prefWidth="88.0" text="Törlés" />
-            <VBox layoutX="581.0" layoutY="126.0" spacing="10.0">
-               <children>
-                  <TextField id="modTermek_name" fx:id="modTermek_name" layoutX="204.0" layoutY="128.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="modTermek_vonalkod" fx:id="modTermek_vonalkod" layoutX="204.0" layoutY="158.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="modTermek_egysegar" fx:id="modTermek_egysegar" layoutX="203.0" layoutY="188.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="modTermek_mennyiseg" fx:id="modTermek_mennyiseg" layoutX="203.0" layoutY="218.0" prefHeight="25.0" prefWidth="192.0" />
-                  <TextField id="modTermek_megjegyzes" fx:id="modTermek_megjegyzes" layoutX="204.0" layoutY="248.0" prefHeight="25.0" prefWidth="192.0" />
-               </children>
-            </VBox>
-            <Text layoutX="569.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Termék módosítása" textAlignment="CENTER">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Text>
-            <Button id="modTermek" fx:id="modTermek" layoutX="818.0" layoutY="193.0" mnemonicParsing="false" onAction="#modTermek" prefHeight="31.0" prefWidth="88.0" text="Módosítás" />
-         </children>
-      </Pane>
-    </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
 </AnchorPane>

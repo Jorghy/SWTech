@@ -1,63 +1,60 @@
 package teljesenmindegy;
+
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Termek {
-    private String nev;
-    private String vonalkod;
-    private int egysegar;
-    private int mennyiseg;
-    private String megjegyzes;
+    private final SimpleStringProperty nev;
+    private final SimpleStringProperty vonalkod;
+    private final SimpleStringProperty egysegar;
+    private final SimpleStringProperty mennyiseg;
+    private final SimpleStringProperty megjegyzes;
 
-    public Termek(String nev, String vonalkod, int egysegar, int mennyiseg, String megjegyzes) {
-        this.nev = nev;
-        this.vonalkod = vonalkod;
-        this.egysegar = egysegar;
-        this.mennyiseg = mennyiseg;
-        this.megjegyzes = megjegyzes;
+    public Termek(String nev, String vonalkod, String egysegar, String mennyiseg, String megjegyzes) {
+        this.nev = new SimpleStringProperty(nev);
+        this.vonalkod = new SimpleStringProperty(vonalkod);
+        this.egysegar = new SimpleStringProperty(egysegar);
+        this.mennyiseg = new SimpleStringProperty(mennyiseg);
+        this.megjegyzes = new SimpleStringProperty(megjegyzes);
     }
-
+    
     public String getNev() {
-        return nev;
+        return nev.get();
     }
-
-    public void setNev(String nev) {
-        this.nev = nev;
+    
+    public void setNev(String n){
+        nev.set(n);
     }
-
+    
     public String getVonalkod() {
-        return vonalkod;
+        return vonalkod.get();
     }
-
-    public void setVonalkod(String vonalkod) {
-        this.vonalkod = vonalkod;
+    
+    public void setVonalkod(String v){
+        vonalkod.set(v);
     }
-
-    public int getEgysegar() {
-        return egysegar;
+    
+    public String getEgysegar() {
+        return egysegar.get();
     }
-
-    public void setEgysegar(int egysegar) {
-        this.egysegar = egysegar;
+    
+    public void setEgysegar(String e){
+        egysegar.set(e);
     }
-
-    public int getMennyiseg() {
-        return mennyiseg;
+    
+    public String getMennyiseg() {
+        return mennyiseg.get();
     }
-
-    public void setMennyiseg(int mennyiseg) {
-        this.mennyiseg = mennyiseg;
+    
+    public void setMennyiseg(String mn){
+        mennyiseg.set(mn);
     }
-
+    
     public String getMegjegyzes() {
-        return megjegyzes;
-    }
-
-    public void setMegjegyzes(String megjegyzes) {
-        this.megjegyzes = megjegyzes;
-    }
-
-    @Override
-    public String toString() {
-        return "Termek{" + "nev=" + nev + ", vonalkod=" + vonalkod + ", egysegar=" + egysegar + ", mennyiseg=" + mennyiseg + ", megjegyzes=" + megjegyzes + '}';
+        return megjegyzes.get();
     }
     
-    
+    public void setMegjegyzes(String mj){
+        nev.set(mj);
+    }
 }

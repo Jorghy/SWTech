@@ -1,74 +1,69 @@
 package teljesenmindegy;
+
+import javafx.beans.property.SimpleStringProperty;
+
 public class User {
-    private String nev;
-    private String username;
-    private String password;
-    private String id;
-    private String address;
-    private String rank;
+    private final SimpleStringProperty nev;
+    private final SimpleStringProperty username;
+    private final SimpleStringProperty password;
+    private final SimpleStringProperty id;
+    private final SimpleStringProperty address;
+    private final SimpleStringProperty rank;
 
     public User(String nev, String username, String password, String id, String address, String rank) {
-        this.nev = nev;
-        this.username = username;
-        this.password = password;
-        this.id = id;
-        this.address = address;
-        this.rank = rank;
+        this.nev = new SimpleStringProperty(nev);
+        this.username = new SimpleStringProperty(username);
+        this.password = new SimpleStringProperty(password);
+        this.id = new SimpleStringProperty(id);
+        this.address = new SimpleStringProperty(address);
+        this.rank = new SimpleStringProperty(rank);
     }
 
     public String getNev() {
-        return nev;
+        return nev.get();
     }
 
-    public void setNev(String nev) {
-        this.nev = nev;
+    public void setNev(String n) {
+        nev.set(n);
     }
 
     public String getUsername() {
-        return username;
+        return username.get();
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsername(String u) {
+        username.set(u);
     }
 
     public String getPassword() {
-        return password;
+        return password.get();
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String p) {
+        password.set(p);
     }
 
     public String getId() {
-        return id;
+        return id.get();
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setId(String i) {
+        id.set(i);
     }
 
     public String getAddress() {
-        return address;
+        return address.get();
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setAddress(String a) {
+        address.set(a);
     }
 
     public String getRank() {
-        return rank;
+        return rank.get();
     }
 
-    public void setRank(String rank) {
-        this.rank = rank;
+    public void setRank(String r) {
+        rank.set(r);
     }
-
-    @Override
-    public String toString() {
-        return "User{" + "nev=" + nev + ", username=" + username + ", password=" + password + ", id=" + id + ", address=" + address + ", rank=" + rank + '}';
-    }
-    
-    
-    
 }
