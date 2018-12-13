@@ -6,17 +6,29 @@ public class User {
     private final SimpleStringProperty nev;
     private final SimpleStringProperty username;
     private final SimpleStringProperty password;
-    private final SimpleStringProperty id;
-    private final SimpleStringProperty address;
+    private final SimpleStringProperty szig;
+    private final SimpleStringProperty email;
     private final SimpleStringProperty rank;
+    private final SimpleStringProperty id;
 
-    public User(String nev, String username, String password, String id, String address, String rank) {
+    public User(String nev, String username, String password, String szig, String email, String rank) {
         this.nev = new SimpleStringProperty(nev);
         this.username = new SimpleStringProperty(username);
         this.password = new SimpleStringProperty(password);
-        this.id = new SimpleStringProperty(id);
-        this.address = new SimpleStringProperty(address);
+        this.szig = new SimpleStringProperty(szig);
+        this.email = new SimpleStringProperty(email);
         this.rank = new SimpleStringProperty(rank);
+        this.id = new SimpleStringProperty("");
+    }
+    
+    public User(Integer id, String nev, String username, String password, String szig, String email, String rank) {
+        this.nev = new SimpleStringProperty(nev);
+        this.username = new SimpleStringProperty(username);
+        this.password = new SimpleStringProperty(password);
+        this.szig = new SimpleStringProperty(szig);
+        this.email = new SimpleStringProperty(email);
+        this.rank = new SimpleStringProperty(rank);
+        this.id = new SimpleStringProperty(String.valueOf(id));
     }
 
     public String getNev() {
@@ -43,20 +55,20 @@ public class User {
         password.set(p);
     }
 
-    public String getId() {
-        return id.get();
+    public String getSzig() {
+        return szig.get();
     }
 
-    public void setId(String i) {
-        id.set(i);
+    public void setSzig(String i) {
+        szig.set(i);
     }
 
-    public String getAddress() {
-        return address.get();
+    public String getEmail() {
+        return email.get();
     }
 
-    public void setAddress(String a) {
-        address.set(a);
+    public void setEmail(String a) {
+        email.set(a);
     }
 
     public String getRank() {
@@ -65,5 +77,13 @@ public class User {
 
     public void setRank(String r) {
         rank.set(r);
+    }
+    
+    public String getId() {
+        return id.get();
+    }
+
+    public void setId(String d) {
+        id.set(d);
     }
 }

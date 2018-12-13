@@ -71,14 +71,68 @@
                               </Label>
                            </children>
                         </VBox>
-                        <Button id="addNewProduct" fx:id="addNewProduct" layoutX="537.0" onAction="#addProduct" layoutY="632.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="95.0" text="Új termék hozzáadása" textAlignment="CENTER" wrapText="true" />
+                        <Button id="addNewProduct" fx:id="addNewProduct" layoutX="537.0" layoutY="632.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="45.0" prefWidth="95.0" text="Új termék hozzáadása" textAlignment="CENTER" wrapText="true" />
                      </children>
                   </Pane>
-                  <Pane fx:id="adminPane" prefHeight="726.0" prefWidth="725.0" visible="false" />
-                  <Pane fx:id="loginPane" prefHeight="726.0" prefWidth="725.0" visible="false">
+                  <Pane id="adminPane" fx:id="adminPane" prefHeight="748.0" prefWidth="725.0" visible="false">
+                     <children>
+                        <TableView id="user_Table" fx:id="user_Table" editable="true" prefHeight="509.0" prefWidth="735.0">
+                          <placeholder>
+                            <Label text="Nincs adat." />
+                          </placeholder>
+                          <columns>
+                          </columns>
+                        </TableView>
+                        <VBox layoutX="288.0" layoutY="528.0" prefHeight="190.0" prefWidth="238.0" spacing="8.0">
+                           <children>
+                              <TextField id="addUser_nev" fx:id="addUser_nev" layoutX="288.0" layoutY="565.0" promptText="Kovács László" />
+                              <TextField id="addUser_username" fx:id="addUser_username" layoutX="288.0" layoutY="597.0" promptText="Laci123" />
+                              <PasswordField id="addUser_password" fx:id="addUser_password" />
+                              <TextField id="addUser_id" fx:id="addUser_id" layoutX="288.0" layoutY="630.0" promptText="864571SA" />
+                              <TextField id="addUser_email" fx:id="addUser_email" layoutX="288.0" layoutY="668.0" promptText="Email" />
+                              <TextField id="addUser_rank" fx:id="addUser_rank" layoutX="288.0" layoutY="702.0" promptText="Felhasználó/Admin" />
+                           </children>
+                        </VBox>
+                        <VBox alignment="TOP_RIGHT" layoutX="146.0" layoutY="531.0" spacing="8.0">
+                           <children>
+                              <Text layoutX="195.0" layoutY="548.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Név:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="195.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Felhasználó név:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="195.0" layoutY="609.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jelszó:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="195.0" layoutY="643.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Szig. szám:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="195.0" layoutY="670.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cím:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                              <Text layoutX="195.0" layoutY="711.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rank:">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </VBox>
+                        <Button id="add_user" fx:id="add_user" layoutX="548.0" layoutY="597.0" mnemonicParsing="false" onAction="#addUser" prefHeight="52.0" prefWidth="154.0" text="Új felhasználó hozzáadása" textAlignment="CENTER" wrapText="true" />
+                     </children></Pane>
+                  <Pane id="loginPane" fx:id="loginPane" prefHeight="726.0" prefWidth="725.0" visible="false">
                      <children>
                         <TextField id="login_user" fx:id="login_user" layoutX="347.0" layoutY="124.0" prefHeight="33.0" prefWidth="238.0" promptText="Felhasználónév" />
-                        <TextField id="login_pass" fx:id="login_pass" layoutX="347.0" layoutY="184.0" prefHeight="33.0" prefWidth="238.0" promptText="Jelszó" />
+                        <PasswordField id="login_pass" fx:id="login_pass" layoutX="347.0" layoutY="184.0" prefHeight="33.0" prefWidth="238.0" promptText="Jelszó" />
                         <Label layoutX="109.0" layoutY="123.0" text="Felhasználónév:">
                            <font>
                               <Font name="System Bold" size="25.0" />

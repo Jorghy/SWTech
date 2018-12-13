@@ -9,6 +9,7 @@ public class Termek {
     private final SimpleStringProperty egysegar;
     private final SimpleStringProperty mennyiseg;
     private final SimpleStringProperty megjegyzes;
+    private final SimpleStringProperty id;
 
     public Termek(String nev, String vonalkod, String egysegar, String mennyiseg, String megjegyzes) {
         this.nev = new SimpleStringProperty(nev);
@@ -16,6 +17,16 @@ public class Termek {
         this.egysegar = new SimpleStringProperty(egysegar);
         this.mennyiseg = new SimpleStringProperty(mennyiseg);
         this.megjegyzes = new SimpleStringProperty(megjegyzes);
+        this.id = new SimpleStringProperty("");
+    }
+    
+    public Termek(Integer id, String nev, String vonalkod, String egysegar, String mennyiseg, String megjegyzes) {
+        this.nev = new SimpleStringProperty(nev);
+        this.vonalkod = new SimpleStringProperty(vonalkod);
+        this.egysegar = new SimpleStringProperty(egysegar);
+        this.mennyiseg = new SimpleStringProperty(mennyiseg);
+        this.megjegyzes = new SimpleStringProperty(megjegyzes);
+        this.id = new SimpleStringProperty(String.valueOf(id));
     }
     
     public String getNev() {
@@ -56,5 +67,13 @@ public class Termek {
     
     public void setMegjegyzes(String mj){
         nev.set(mj);
+    }
+    
+    public String getId() {
+        return id.get();
+    }
+
+    public void setId(String d) {
+        id.set(d);
     }
 }
